@@ -5,6 +5,4 @@ file(GLOB gg2_SRC
      "*.cc"
 )
 
-add_library(gg2 STATIC 
-    ${gg2_SRC}
-)
+set(gg2_SRC ${gg2_SRC} PARENT_SCOPE)
