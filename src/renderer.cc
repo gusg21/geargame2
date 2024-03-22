@@ -14,6 +14,7 @@ Renderer::Renderer(const Window& window) {
 
     spdlog::debug("Renderer successfully created");
 }
+
 Renderer::~Renderer() {
     if (renderer != NULL) {
         SDL_DestroyRenderer(renderer);
