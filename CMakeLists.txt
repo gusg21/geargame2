@@ -14,6 +14,7 @@ message("GG2 Headers: " ${gg2_HEADERS_GLOB})
 option(COMPILE_EXAMPLES "Include the examples/ subdirectory in this build" ON)
 
 add_subdirectory(vendor/SDL)
+add_subdirectory(vendor/SDL_image)
 add_subdirectory(vendor/spdlog)
 
 add_subdirectory(src) # gg2_SRC
