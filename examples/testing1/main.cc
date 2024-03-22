@@ -2,10 +2,10 @@
 
 int main() {
     gg::Game* game = new gg::Game();
-
     game->initialize();
 
-    game->uninitialize();
+    game->doLoop();
 
+    game->uninitialize();
     return 0;
 }
