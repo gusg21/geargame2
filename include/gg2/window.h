@@ -18,6 +18,8 @@ public:
     Window(const std::string& title, uint32_t width, uint32_t height);
     ~Window();
 
+    bool isOk() const { return window != NULL; };
+
     void* getWindowHandle() const { return static_cast<void*>(window); };
 };  // class Window
 }  // namespace gg

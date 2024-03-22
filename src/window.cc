@@ -10,7 +10,7 @@ namespace gg {
 Window::Window(const std::string &title, uint32_t width, uint32_t height) {
     window = SDL_CreateWindow(title.c_str(), width, height, 0);
     if (window == NULL) {
-        spdlog::critical("Failed to create window! Error: %s", SDL_GetError());
+        spdlog::critical("Failed to create window! Error: {}", SDL_GetError());
         return;
     }
 

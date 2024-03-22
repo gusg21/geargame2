@@ -5,11 +5,12 @@
 #include <cassert>
 
 #include "SDL3/SDL.h"
-#include "spdlog/spdlog.h"
-
-#include "gg2/window.h"
-#include "gg2/renderer.h"
+#include "SDL3_image/SDL_image.h"
 #include "gg2/game.h"
+#include "gg2/renderer.h"
+#include "gg2/texture.h"
+#include "gg2/window.h"
+#include "spdlog/spdlog.h"
 
 namespace gg {
 
@@ -27,27 +28,35 @@ Game::GameError Game::initialize() {
     assert(!initialized);
 
     // Initialize SDL
-    if (SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS |
-                 SDL_INIT_TIMER)) {
-        spdlog::critical("SDL Failed to initialize!\nError: %s",
-                         SDL_GetError());
+    if (SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_TIMER)) {
+        spdlog::critical("SDL Failed to initialize!\nError: {}", SDL_GetError());
         return GameError::SDL_FAIL;
     }
     spdlog::debug("SDL Initialized");
 
+    // Initialize SDL_image
+    if (IMG_Init(IMG_INIT_PNG) == 0) {
+        spdlog::critical("SDL_image Failed to initialize!\nError: {}", IMG_GetError());
+        return GameError::SDL_IMAGE_FAIL;
+    }
+
     // Create a window
     window = new gg::Window("geargame2", 640, 480);
+    if (!window->isOk()) {
+        return GameError::WINDOW_FAIL;
+    }
 
     // Create a renderer
     renderer = new gg::Renderer(*window);
+    if (!renderer->isOk()) {
+        return GameError::RENDERER_FAIL;
+    }
 
     // Success!
     initialized = true;
     spdlog::debug("Geargame Initialized");
     return GameError::SUCCESS;
 }
-
-
 
 void Game::uninitialize() {
     // Ensure we were previously initialized
@@ -71,6 +80,8 @@ void Game::uninitialize() {
 void Game::doLoop() {
     spdlog::debug("Beginning game loop...");
 
+    gg::Texture* tex = new gg::Texture(*renderer, "assets/test.png");
+
     running = true;
     SDL_Event event;
     while (running) {
@@ -84,6 +95,9 @@ void Game::doLoop() {
         }
 
         // Rest of the stuff lol
+        renderer->clear();
+
+        renderer->present();
     }
 
     spdlog::debug("Exiting game loop...");

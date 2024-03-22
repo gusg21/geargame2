@@ -1,9 +1,10 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "gg2/window.h"
-
 namespace gg {
+class Window;
+class Renderer;
+
 class Game {
 private:
     bool initialized;
@@ -15,7 +16,10 @@ private:
 public:
     enum class GameError {
         SUCCESS,
-        SDL_FAIL
+        SDL_FAIL,
+        SDL_IMAGE_FAIL,
+        WINDOW_FAIL,
+        RENDERER_FAIL,
     };
 
     Game();

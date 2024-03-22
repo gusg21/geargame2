@@ -2,7 +2,9 @@
 
 int main() {
     gg::Game* game = new gg::Game();
-    game->initialize();
+    if (game->initialize() != gg::Game::GameError::SUCCESS) {
+        return 1;
+    }
 
     game->doLoop();
 

@@ -83,5 +83,8 @@
         "compare": "cpp",
         "concepts": "cpp",
         "algorithm": "cpp"
-    }
+    },
+    "cmake.debugConfig": {
+        "cwd": "${workspaceFolder}/examples/testing1"
+    },
 }

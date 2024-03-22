@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.21)
-set (CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 20)
 
 # Project declaration
 project(
@@ -9,7 +9,7 @@ project(
 )
 
 set(gg2_INCLUDE "${CMAKE_SOURCE_DIR}/include/")
-message("GG2 Headers: " ${gg2_HEADERS_GLOB})
+set(BUILD_SHARED_LIBS ON)
 
 option(COMPILE_EXAMPLES "Include the examples/ subdirectory in this build" ON)
 
@@ -30,8 +30,12 @@ if (TARGET SDL3::SDL3main)
 endif()
 
 target_include_directories(gg2 PUBLIC vendor/SDL/include)
-target_link_libraries(gg2 PRIVATE SDL3::SDL3)
+target_link_libraries(gg2 PRIVATE SDL3::SDL3-shared)
 
+target_include_directories(gg2 PUBLIC vendor/SDL_image/include)
+target_link_libraries(gg2 PRIVATE SDL3_image-shared)
+
+target_include_directories(gg2 PUBLIC vendor/spdlog/include)
 target_link_libraries(gg2 PRIVATE spdlog)
 
 if (DEBUG)
