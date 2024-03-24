@@ -72,6 +72,7 @@ cmake_dependent_option(SDL3IMAGE_INSTALL_CPACK "Create binary SDL3_image archive
 cmake_dependent_option(SDL3IMAGE_INSTALL_MAN "Install man pages for SDL3_image" ${SDL3IMAGE_ROOTPROJECT} "SDL3IMAGE_INSTALL" OFF)
 cmake_dependent_option(SDL3IMAGE_DEPS_SHARED "Load dependencies dynamically" ON PLATFORM_SUPPORTS_SHARED OFF)
 option(SDL3IMAGE_VENDORED "Use vendored third-party libraries" ${vendored_default})
+set(SDL3IMAGE_VENDORED OFF)
 option(SDL3IMAGE_WERROR "Treat warnings as errors" OFF)
 
 option(SDL3IMAGE_STRICT "Fail when a dependency could not be found" OFF)

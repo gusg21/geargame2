@@ -4,7 +4,7 @@
 #include "spdlog/spdlog.h"
 
 namespace gg {
-Renderer::Renderer(const Window& window) : clearColor((gg::Color){31, 25, 46, 255}) {
+Renderer::Renderer(const Window& window) : clearColor(gg::Color(31, 25, 46, 255)) {
     renderer = SDL_CreateRenderer(static_cast<SDL_Window*>(window.getWindowHandle()), NULL,
                                   SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (!isOk()) {

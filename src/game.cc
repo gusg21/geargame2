@@ -80,7 +80,7 @@ void Game::uninitialize() {
 void Game::doLoop() {
     spdlog::debug("Beginning game loop...");
 
-    gg::Texture* tex = new gg::Texture(*renderer, "assets/test.png");
+    gg::Texture* tex = new gg::Texture(*renderer, "assets/barn.png");
 
     running = true;
     SDL_Event event;

@@ -12,7 +12,7 @@ Texture::Texture(const gg::Renderer& renderer, const std::string& path) {
     if (texture == NULL) {
         spdlog::warn("Failed to load texture {}!", path.c_str());
     } else {
-        spdlog::debug("Loaded texture {} successfully", path.c_str());
+        spdlog::info("Loaded texture {} successfully", path.c_str());
     }
 }
 

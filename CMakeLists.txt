@@ -24,6 +24,10 @@ add_subdirectory(include/gg2) # gg2_HEADERS
 add_library(gg2 STATIC ${gg2_SRC})
 target_include_directories(gg2 PRIVATE ${gg2_INCLUDE})
 
+if ( MSVC )
+    target_compile_options(gg2 PRIVATE /wd4996)
+endif()
+
 if (TARGET SDL3::SDL3main)
     message("Including SDL3main")
     target_link_libraries(mygame PRIVATE SDL3::SDL3main)
